@@ -1,4 +1,4 @@
-class CreateIndividual< ActiveRecord::Migration[5.2]
+class CreateIndividuals< ActiveRecord::Migration[5.2]
   def change
     create_table(:individuals) do |t|
       t.column(:name, :string)

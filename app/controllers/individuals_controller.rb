@@ -55,6 +55,6 @@ class IndividualsController < ApplicationController
 
   private
   def individual_params
-    params.require(:individual).permit(:name)
+    params.require(:individual).permit(:name,:division_id )
   end
 end

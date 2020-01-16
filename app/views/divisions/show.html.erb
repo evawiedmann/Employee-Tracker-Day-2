@@ -1,0 +1,10 @@
+<h1>Project: <%= @division.name %></h1>
+<h2>Individual: <%= @individual.name %></h2>
+<h3><%= @division.lyrics %></h3>
+
+<p><%= link_to "Edit division", edit_individual_song_path(@individual, @division) %></p>
+<p><%= link_to "Delete division", individual_division_path(@individual, @division),
+                        :data => {:confirm => "Are you sure?",
+                                       :method => "delete"} %></p>
+
+<p><%= link_to "Return to individual", individual_path(@individual) %></p>

@@ -2,7 +2,31 @@
 
 <p><%= link_to "Edit", edit_individual_path(@individual) %></p>
 <p><%= link_to "Delete", individual_path(@individual),
-                         :data => {:confirm => "You sure?",
-                                   :method => "delete"} %></p>
+  :data => {:confirm => "You sure?",
+  :method => "delete"} %></p>
 
-<p><%= link_to "Return to individuals", individuals_path %></p>
+
+  <% if @individuals.divisions.any? %>
+  <h4>Here are the divisions for this individuals:</h4>
+
+  <% @individuals.divisions.each do |division| %>
+  <ul>
+    <li>
+      <%= link_to division.name, individuals_division_path(@individuals, division) %>
+    </li>
+  </ul>
+  <% end %>
+  <% else %>
+  <p>No divisions are listed for this individuals.</p>
+  <% end %>
+
+  <p><%= link_to "Add a division", new_individuals_division_path(@individuals) %></p>
+
+  <p><%= link_to "Edit", edit_individuals_path(@individuals) %></p>
+  <p><%= link_to "Delete individuals", individuals_path(@individuals),
+    :data => {:confirm => "Are you sure?",
+    :method => "delete"} %></p>
+
+
+
+    <p><%= link_to "Return to individuals", individuals_path %></p>
