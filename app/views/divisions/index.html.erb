@@ -2,7 +2,7 @@
 
 <% if @divisions.any? %>
   <ul>
-    <% @Divisions.each do |division| %>
+    <% @divisions.each do |division| %>
       <li><%= link_to division.name, division_path(division) %></li>
     <% end %>
   </ul>

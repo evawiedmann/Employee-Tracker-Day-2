@@ -10,23 +10,21 @@ class DivisionsController < ApplicationController
   end
 
   def create
-    @individual = Individual.find(params[:division_id])
-    @division = @individual.divisions.new(division_params)
+    # Code for creating a new individual goes here.
+    @division= Division.new(division_params)
     if @division.save
-      redirect_to individual_path(@individual)
+      redirect_to divisions_path
     else
       render :new
     end
   end
 
   def show
-    @individual = Individual.find(params[:individual_id])
     @division = Division.find(params[:id])
     render :show
   end
 
   def edit
-    @individual = Individual.find(params[:individual_id])
     @division = Division.find(params[:id])
     render :edit
   end
@@ -34,21 +32,22 @@ class DivisionsController < ApplicationController
   def update
     @division = Division.find(params[:id])
     if @division.update(division_params)
-      redirect_to individual_path(@division.album)
+      redirect_to divisions_path
     else
       render :edit
     end
   end
 
   def destroy
-    @division= Division.find(params[:id])
+    # Code for deleting an individual goes here.
+    @division = Division.find(params[:id])
     @division.destroy
-    redirect_to individual_path(@division.individual)
+    redirect_to divisions_path
   end
   # Other controller actions go here.
 
   private
   def division_params
-    params.require(:division).permit(:name, :lyrics)
+    params.require(:division).permit(:name)
   end
 end

@@ -6,19 +6,7 @@
   :method => "delete"} %></p>
 
 
-  <% if @individuals.divisions.any? %>
-  <h4>Here are the divisions for this individuals:</h4>
-
-  <% @individuals.divisions.each do |division| %>
-  <ul>
-    <li>
-      <%= link_to division.name, individuals_division_path(@individuals, division) %>
-    </li>
-  </ul>
-  <% end %>
-  <% else %>
-  <p>No divisions are listed for this individuals.</p>
-  <% end %>
+  
 
   <p><%= link_to "Add a division", new_individuals_division_path(@individuals) %></p>
 

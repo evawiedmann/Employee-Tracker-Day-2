@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     resources :individuals
   end
   resources :divisions do
-    resources :individuals do
-    end
+    resources :individuals 
   end
 end

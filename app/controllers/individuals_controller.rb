@@ -1,23 +1,17 @@
 
 class IndividualsController < ApplicationController
 
-  def index
-    # Code for listing all individuals goes here.
-    @individuals = Individual.all
-    render :index
-  end
-
   def new
-    # Code for new individual form goes here.
+    @division = Division.find(params[:division_id])
     @individual = Individual.new
     render :new
   end
 
   def create
-    # Code for creating a new individual goes here.
-    @individual= Individual.new(individual_params)
+    @division = Division.find(params[:division_id])
+    @individual = @division.individuals.new(individual_params)
     if @individual.save
-      redirect_to individuals_path
+      redirect_to division_path(@division)
     else
       render :new
     end
@@ -25,19 +19,16 @@ class IndividualsController < ApplicationController
 
 
   def edit
-    # Code for edit individual form goes here.
     @individual = Individual.find(params[:id])
     render :edit
   end
 
   def show
-    # Code for showing a single individual goes here.
     @individual = Individual.find(params[:id])
     render :show
   end
 
   def update
-    # Code for updating an individual goes here.
     @individual = Individual.find(params[:id])
     if @individual.update(individual_params)
       redirect_to individuals_path
@@ -47,7 +38,6 @@ class IndividualsController < ApplicationController
   end
 
   def destroy
-    # Code for deleting an individual goes here.
     @individual = Individual.find(params[:id])
     @individual.destroy
     redirect_to individuals_path
@@ -55,6 +45,6 @@ class IndividualsController < ApplicationController
 
   private
   def individual_params
-    params.require(:individual).permit(:name,:division_id )
+    params.require(:individual).permit(:name, :division_id)
   end
 end

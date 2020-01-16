@@ -1,10 +1,26 @@
-<h1>Project: <%= @division.name %></h1>
-<h2>Individual: <%= @individual.name %></h2>
-<h3><%= @division.lyrics %></h3>
+<h1>Division: <%= @division.name %></h1>
 
-<p><%= link_to "Edit division", edit_individual_song_path(@individual, @division) %></p>
-<p><%= link_to "Delete division", individual_division_path(@individual, @division),
-                        :data => {:confirm => "Are you sure?",
-                                       :method => "delete"} %></p>
+<% if @division.individuals.any? %>
+<h4>Here are the individuals for this division:</h4>
 
-<p><%= link_to "Return to individual", individual_path(@individual) %></p>
+<% @division.individuals.each do |individual| %>
+<ul>
+  <li>
+    <%= link_to individual.name, division_individuals_path(@division, individual) %>
+  </li>
+</ul>
+<% end %>
+<% else %>
+<p>No individuals are listed for this division.</p>
+<% end %>
+
+<%= link_to "Edit division", edit_division_path(@division) %></p>
+<p><%= link_to "Delete division", division_path(@division),
+  :data => {:confirm => "Are you sure?",
+  :method => "delete"} %></p>
+
+<%= link_to "Create individual", new_division_individual_path(@division) %></p>
+
+
+
+  <p><%= link_to "Return to division", divisions_path(@division) %> </p>
